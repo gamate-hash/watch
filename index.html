@@ -6,7 +6,7 @@ layout: none
 <div>Last Updated on {{ site.time }}</div>
 <ul>
   {% for page in site.pages %}
-    {% if page.title and page.layout and page.permalink != "/404.html" and page.url contains "/" and page.url != "/assets/" and page.url contains "." == false %}
+    {% if page.title and page.layout and page.permalink != "/404.html" and page.url != "/assets/" and page.url contains "." == false %}
       <li>
         <a href="{{ page.url }}">{{ page.title }}</a>
       </li>
