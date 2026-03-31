@@ -6,8 +6,10 @@ layout: none
 <div>Last Updated on {{ site.time }}</div>
 <ul>
   {% for page in site.pages %}
-    <li>
-      <a href="{{ page.url }}">{{ page.abtitle | default: page.url }}</a>
-    </li>
+    {% unless page.url contains ".xml" or page.url contains ".json" %}
+      <li>
+        <a href="{{ page.url }}">{{ page.title | default: page.url }}</a>
+      </li>
+    {% endunless %}
   {% endfor %}
 </ul>
