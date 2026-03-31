@@ -6,10 +6,10 @@ layout: none
 <div>Last Updated on {{ site.time }}</div>
 <ul>
   {% for page in site.pages %}
-    {% unless page.url contains ".xml" or page.url contains ".json" %}
+    {% if page.title and page.layout and page.permalink != "/404.html" and page.url contains "/" and page.url != "/assets/" and page.url contains "." == false %}
       <li>
-        <a href="{{ page.url }}">{{ page.abtitle | default: page.url }}</a>
+        <a href="{{ page.url }}">{{ page.title }}</a>
       </li>
-    {% endunless %}
+    {% endif %}
   {% endfor %}
 </ul>
