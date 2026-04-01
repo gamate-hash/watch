@@ -11,7 +11,7 @@ nav: true
 <ul>
   {% for page in site.html_pages %}
       <li>
-        <a href="{{ page.url }}">{{ page.abtitle | default: page.url }}</a>
+        <a href=".{{ page.url }}">{{ page.abtitle | default: page.url }}</a>
       </li>
   {% endfor %}
 </ul>
