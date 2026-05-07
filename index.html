@@ -2,21 +2,156 @@
 layout: none
 nav: true
 ---
-
 <!DOCTYPE html>
-<title>{{ site.watchtitle }}</title>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ site.watchtitle }}</title>
 
-<div>Last Updated on {{ site.time | date: "%Y-%m-%d %H:%M:%S" }}</div>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap');
 
-<ul>
-  {% for page in site.html_pages %}
-    <li>
-      <a href=".{{ page.url }}">
-        {% if page.chnlicon %}
-          <img src="{{ page.chnlicon }}" alt="icon" style="width:16px;height:16px;vertical-align:middle;">
-        {% endif %}
-        {{ page.abtitle | default: page.url }}
-      </a>
-    </li>
-  {% endfor %}
-</ul>
+    body {
+      margin: 0;
+      padding: 30px;
+      font-family: 'Comic Neue', cursive;
+      background: linear-gradient(135deg, #4de1ff, #ff5fd2, #7b5cff);
+      background-size: 400% 400%;
+      animation: bgmove 12s ease infinite;
+      color: white;
+      min-height: 100vh;
+    }
+
+    @keyframes bgmove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .wrapper {
+      max-width: 700px;
+      margin: auto;
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(10px);
+      border: 4px solid white;
+      border-radius: 28px;
+      padding: 28px;
+      box-shadow:
+        0 0 20px rgba(255,255,255,0.5),
+        0 0 50px rgba(255,0,200,0.4);
+    }
+
+    h1 {
+      margin-top: 0;
+      font-size: 48px;
+      text-align: center;
+      color: #fff;
+      text-shadow:
+        3px 3px 0px #ff3cac,
+        6px 6px 0px #4de1ff;
+    }
+
+    .updated {
+      text-align: center;
+      margin-bottom: 25px;
+      font-size: 15px;
+      opacity: 0.9;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    li {
+      margin-bottom: 14px;
+    }
+
+    a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      background: linear-gradient(90deg, #ff4fc3, #6a5cff);
+      border-radius: 18px;
+      color: white;
+      text-decoration: none;
+      font-size: 20px;
+      font-weight: bold;
+      transition: 0.2s ease;
+      border: 3px solid rgba(255,255,255,0.4);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    }
+
+    a:hover {
+      transform: scale(1.03) rotate(-1deg);
+      background: linear-gradient(90deg, #4de1ff, #ff4fc3);
+    }
+
+    img {
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      background: white;
+      padding: 2px;
+    }
+
+    .sparkles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .sparkles span {
+      position: absolute;
+      color: white;
+      animation: float 8s linear infinite;
+      opacity: 0.7;
+      font-size: 20px;
+    }
+
+    @keyframes float {
+      from {
+        transform: translateY(100vh) rotate(0deg);
+      }
+      to {
+        transform: translateY(-100px) rotate(360deg);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="sparkles">
+    <span style="left:10%">★</span>
+    <span style="left:25%;animation-delay:2s;">✦</span>
+    <span style="left:45%;animation-delay:4s;">★</span>
+    <span style="left:70%;animation-delay:1s;">✦</span>
+    <span style="left:85%;animation-delay:5s;">★</span>
+  </div>
+
+  <div class="wrapper">
+    <h1>{{ site.watchtitle }}</h1>
+
+    <div class="updated">
+      Last Updated on {{ site.time | date: "%Y-%m-%d %H:%M:%S" }}
+    </div>
+
+    <ul>
+      {% for page in site.html_pages %}
+        <li>
+          <a href=".{{ page.url }}">
+            {% if page.chnlicon %}
+              <img src="{{ page.chnlicon }}" alt="icon">
+            {% endif %}
+            {{ page.abtitle | default: page.url }}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</body>
+</html>
